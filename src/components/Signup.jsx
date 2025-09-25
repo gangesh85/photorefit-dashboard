@@ -1,0 +1,72 @@
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router";
+
+export default function Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      navigate("/");
+    }
+  });
+
+  const handleSignup = async () => {
+    let response = await fetch("http://localhost:3001/signup", {
+      method: "post",
+      body: JSON.stringify({ name, email, password }),
+      headers: { "content-type": "application/json" },
+    });
+    let userData = await response.json();
+    let user = JSON.stringify(userData.user);
+    if (userData.auth) {
+      localStorage.setItem("user", user);
+      localStorage.setItem("token", userData.auth);
+      navigate("/");
+    }
+  };
+
+  return (
+    <div className="register">
+      <h2>Register</h2>
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter Name"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+      />
+      <input
+        type="text"
+        id="phone"
+        placeholder="Enter phone"
+        value={phone}
+        onChange={(event) => setPhone(event.target.value)}
+      />
+      <input
+        type="text"
+        id="email"
+        placeholder="Enter Email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <input
+        type="password"
+        id="passowrd"
+        placeholder="Enter Password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
+      <button type="button" onClick={handleSignup}>
+        Signup
+      </button>
+      <p className="tagLine">
+        Already have an account?<Link to="/login">Login</Link>
+      </p>
+    </div>
+  );
+}
