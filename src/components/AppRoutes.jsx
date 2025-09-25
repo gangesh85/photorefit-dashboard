@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import { lazy } from "react";
 import PageNotFound from "./PageNotFound";
 import Orders from "./Orders";

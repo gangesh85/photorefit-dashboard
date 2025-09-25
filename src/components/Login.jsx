@@ -48,7 +48,7 @@ export default function Login() {
       />
       <button onClick={handleLogin}>login</button>
       <p className="tagLine">
-        Don't have account?<Link to="/signup">Signup</Link>
+        don't have account? <Link to="/signup">Signup</Link>
       </p>
     </div>
   );

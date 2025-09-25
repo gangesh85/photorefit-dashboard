@@ -65,7 +65,7 @@ export default function Signup() {
         Signup
       </button>
       <p className="tagLine">
-        Already have an account?<Link to="/login">Login</Link>
+        already have an account? <Link to="/login">Login</Link>
       </p>
     </div>
   );
