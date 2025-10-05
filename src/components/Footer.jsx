@@ -1,7 +1,8 @@
 export default function Footer() {
   return (
-    <div className="footer">
-      © {new Date().getFullYear()} copyright Photorefit
-    </div>
+    <footer className="footer">
+      Copyright © {new Date().getFullYear()} Photorefit | All rights reserved.
+      Disclaimer | Privacy Policy
+    </footer>
   );
 }

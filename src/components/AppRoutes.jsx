@@ -1,25 +1,22 @@
-import { Route, Routes } from "react-router";
-import { lazy } from "react";
-import PageNotFound from "./PageNotFound";
-import Orders from "./Orders";
+import { Navigate, Route, Routes } from "react-router";
 import Login from "./Login";
 import Signup from "./Signup";
+import Profile from "./Profile";
 import PrivateRoute from "./PrivateRoute";
-
-const Profile = lazy(() => import("./Profile"));
+import Orders from "./Orders";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route element={<PrivateRoute />}>
-        <Route path="/" element={<Profile />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/orders" element={<Orders />} />
-      </Route>
-
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="*" element={<PageNotFound />} />
+
+      <Route element={<PrivateRoute />}>
+        <Route path="/" element={<Navigate to="/orders" />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
     </Routes>
   );
 }

@@ -1,14 +1,18 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function NavBar() {
-  const auth = () => localStorage.getItem("user");
+  const navigate = useNavigate();
+
+  const auth = localStorage.getItem("user");
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
-    auth() && (
+    auth && (
       <nav>
         <Link className="linkStyle" to="/profile">
           Profile
