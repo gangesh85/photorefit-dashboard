@@ -18,7 +18,7 @@ export default function Login() {
     setStatus("Authenticating...");
 
     try {
-      let response = await fetch("http://localhost:3001/login", {
+      let response = await fetch("https://photorefit-backend.vercel.app/login", {
         method: "post",
         body: JSON.stringify({ email, password }),
         headers: { "content-type": "application/json" },
